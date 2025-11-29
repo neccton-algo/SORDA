@@ -1,5 +1,5 @@
 🚀 SORDA
-Satellite Ocean Reflectance Data Assimilation
+Spectral Ocean Reflectance Data Assimilation
 
 A NECCTON WP4 demonstration of data assimilation with new satellite ocean surface reflectance observations
 
