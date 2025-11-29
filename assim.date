@@ -1,0 +1,126 @@
+# Configuration file for the Ocean Assimilation Kit (OAK)
+# http://modb.oce.ulg.ac.be/mediawiki/index.php/Ocean_Assimilation_Kit
+#
+# Lines starting with # or ! are comments.
+# See comments at the end of this file.
+
+# State vector definition
+
+Model.variables     = [ 'RRS_412nm',            'RRS_443nm',            'RRS_490nm',            'RRS_510nm',            'RRS_555nm',            'RRS_670nm',              'CDI',                  'CEM',                 'CFL',             'MES',           'MIC',          'GEL',          'POC'] 
+Model.gridX         = [ 'domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon']
+Model.gridY         = [ 'domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat']
+Model.gridZ         = [ 'mesh_mask.nc#gdept_0(:,:,1,1)','mesh_mask.nc#gdept_0(:,:,1,1)', 'mesh_mask.nc#gdept_0(:,:,1,1)','mesh_mask.nc#gdept_0(:,:,1,1)','mesh_mask.nc#gdept_0(:,:,1,1)','mesh_mask.nc#gdept_0(:,:,1,1)','mesh_mask.nc#gdept_0(:,:,:,1)','mesh_mask.nc#gdept_0(:,:,:,1)','mesh_mask.nc#gdept_0(:,:,:,1)','mesh_mask.nc#gdept_0(:,:,:,1)','mesh_mask.nc#gdept_0(:,:,:,1)','mesh_mask.nc#gdept_0(:,:,:,1)','mesh_mask.nc#gdept_0(:,:,:,1)'] 
+Model.mask          = [ 'mesh_mask.nc#tmask(:,:,1,1)','mesh_mask.nc#tmask(:,:,1,1)','mesh_mask.nc#tmask(:,:,1,1)','mesh_mask.nc#tmask(:,:,1,1)','mesh_mask.nc#tmask(:,:,1,1)','mesh_mask.nc#tmask(:,:,1,1)','mesh_mask.nc#tmask(:,:,:,1)','mesh_mask.nc#tmask(:,:,:,1)','mesh_mask.nc#tmask(:,:,:,1)','mesh_mask.nc#tmask(:,:,:,1)','mesh_mask.nc#tmask(:,:,:,1)','mesh_mask.nc#tmask(:,:,:,1)','mesh_mask.nc#tmask(:,:,:,1)']
+Model.path          = '/scratch/ulg/mast/pverezem/SORDA/current_day/'
+
+# General configuration options
+
+Config.exec = '/scratch/ulg/mast/pverezem/SORDA/current_day/'
+Config.calendar = 'standard'
+Config.time_origin  = '<DATETIME>' #
+Config.FillValue    = -999999. 
+
+
+# Error space of the state vector
+
+ErrorSpace.type      = 2 # model error is presented as an ensemble
+ErrorSpace.dimension = 20 # ensemble size
+ErrorSpace.path      = '/scratch/ulg/mast/pverezem/SORDA/current_day/'
+ErrorSpace.init      = ['("C",I3.3,"_<DRADATE>.nc#RRS_412nm(:,:,1)")','("C",I3.3,"_<DRADATE>.nc#RRS_443nm(:,:,1)")','("C",I3.3,"_<DRADATE>.nc#RRS_490nm(:,:,1)")','("C",I3.3,"_<DRADATE>.nc#RRS_510nm(:,:,1)")','("C",I3.3,"_<DRADATE>.nc#RRS_555nm(:,:,1)")','("C",I3.3,"_<DRADATE>.nc#RRS_670nm(:,:,1)")','("PC",I3.3,"_<DRADATE>.nc#CDI(:,:,:,1)")','("PC",I3.3,"_<DRADATE>.nc#CEM(:,:,:,1)")','("PC",I3.3,"_<DRADATE>.nc#CFL(:,:,:,1)")','("PC",I3.3,"_<DRADATE>.nc#MES(:,:,:,1)")','("PC",I3.3,"_<DRADATE>.nc#MIC(:,:,:,1)")','("PC",I3.3,"_<DRADATE>.nc#GEL(:,:,:,1)")','("PC",I3.3,"_<DRADATE>.nc#POC(:,:,:,1)")'] # DATE should be in yYYYYmmmddd NEMO-DRAKKAR style
+
+runtype = 2 # assimilate
+
+schemetype = 1 # local
+
+Zones.partition        = ['domain_part.nc#part','domain_part.nc#part','domain_part.nc#part','domain_part.nc#part','domain_part.nc#part','domain_part.nc#part','domain_part.nc#part','domain_part.nc#part','domain_part.nc#part','domain_part.nc#part','domain_part.nc#part','domain_part.nc#part','domain_part.nc#part']
+Zones.corrLength.const = [          50e3,50e3,50e3,50e3,50e3,50e3,50e3,50e3,50e3,50e3,50e3,50e3,50e3 ]
+Zones.maxLength.const  = [          150e3,150e3,150e3,150e3,150e3,150e3,150e3,150e3,150e3,150e3,150e3,150e3,150e3 ]
+Zones.path = '/scratch/ulg/mast/pverezem/SORDA/current_day/'
+
+# logfile contains simple diagnostics such as RMSE with observations
+
+logfile = 'assim_<DATE>.log'
+debugfile = 'assim_<DATE>.debug'
+
+
+#------------------------------------------------------------------------------------
+#
+# observations
+
+Obs001.time      = '<DATETIME>'  # 2017-08-01T11:30:00.00 format
+Obs001.path      = '/scratch/ulg/mast/pverezem/SORDA/current_day/'
+Obs001.variables  = [      'RRS_412nm',            'RRS_443nm',            'RRS_490nm',            'RRS_510nm',            'RRS_555nm',            'RRS_670nm']
+Obs001.names      = [      'Reflectance_412nm',    'Reflectance_443nm',    'Reflectance_490nm',    'Reflectance_510nm',    'Reflectance_555nm',    'Reflectance_670nm']
+Obs001.gridX      = ['domain_cfg.nc#nav_lon', 'domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon','domain_cfg.nc#nav_lon']
+Obs001.gridY      = ['domain_cfg.nc#nav_lat', 'domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat','domain_cfg.nc#nav_lat']
+Obs001.gridZ      = ['gridZ.nc#gdept_0(:,:,1)', 'gridZ.nc#gdept_0(:,:,1)','gridZ.nc#gdept_0(:,:,1)','gridZ.nc#gdept_0(:,:,1)','gridZ.nc#gdept_0(:,:,1)','gridZ.nc#gdept_0(:,:,1)']
+Obs001.value      = ['REF_<DRADATE>.nc#RRS_412nm(:,:,1)','REF_<DRADATE>.nc#RRS_443nm(:,:,1)','REF_<DRADATE>.nc#RRS_490nm(:,:,1)','REF_<DRADATE>.nc#RRS_510nm(:,:,1)','REF_<DRADATE>.nc#RRS_555nm(:,:,1)','REF_<DRADATE>.nc#RRS_670nm(:,:,1)']
+Obs001.mask       = ['mesh_mask.nc#tmask(:,:,1,1)','mesh_mask.nc#tmask(:,:,1,1)','mesh_mask.nc#tmask(:,:,1,1)','mesh_mask.nc#tmask(:,:,1,1)','mesh_mask.nc#tmask(:,:,1,1)','mesh_mask.nc#tmask(:,:,1,1)']
+Obs001.rmse       = ['REF_stds.nc#rrs412','REF_stds.nc#rrs443','REF_stds.nc#rrs490','REF_stds.nc#rrs510','REF_stds.nc#rrs555','REF_stds.nc#rrs670'] # std is assessed as monthly std of August
+
+# diagnostics
+
+# common declaration for all observations
+
+#Diag*.xa-xf       = ['<DATE>_inc.nc#RRS490','<DATE>_inc.nc#RRS443','<DATE>_inc.nc#RRS490','<DATE>_inc.nc#RRS510','<DATE>_inc.nc#RRS555','<DATE>_inc.nc#RRS670']
+#Diag001.xa        = ['xa_<DATE>.nc#RRS412','xa_<DATE>.nc#RRS443', 'xa_<DATE>.nc#RRS490' ,'xa_<DATE>.nc#RRS510' ,'xa_<DATE>.nc#RRS555' ,'xa_<DATE>.nc#RRS670' ,'xa_<DATE>.nc#CDI','xa_<DATE>.nc#CEM','xa_<DATE>.nc#CFL','xa_<DATE>.nc#NCDI','xa_<DATE>.nc#NCEM','xa_<DATE>.nc#NCFL','xa_<DATE>.nc#POC']
+#Diag001.xf        = ['xf_<DATE>.nc#RRS412','xf_<DATE>.nc#RRS443', 'xf_<DATE>.nc#RRS490' ,'xf_<DATE>.nc#RRS510' ,'xf_<DATE>.nc#RRS555' ,'xf_<DATE>.nc#RRS670' ,'xf_<DATE>.nc#CDI','xf_<DATE>.nc#CEM','xf_<DATE>.nc#CFL','xf_<DATE>.nc#NCDI','xf_<DATE>.nc#NCEM','xf_<DATE>.nc#NCFL','xf_<DATE>.nc#POC']
+#Diag001.yo        = ['yo_<DATE>.nc#RRS412', 'yo_<DATE>.nc#RRS443' ,'yo_<DATE>.nc#RRS490' ,'yo_<DATE>.nc#RRS510' ,'yo_<DATE>.nc#RRS555' ,'yo_<DATE>.nc#RRS670']
+#Diag*.stddevxf  = ['<DATE>_STD_xf.nc#RRS412','<DATE>_STD_xf.nc#RRS443','<DATE>_STD_xf.nc#RRS490','<DATE>_STD_xf.nc#RRS510','<DATE>_STD_xf.nc#RRS555','<DATE>_STD_xf.nc#RRS670','<DATE>_STD_xf.nc#CDI','<DATE>_STD_xf.nc#CEM','<DATE>_STD_xf.nc#CFL','<DATE>_STD_xf.nc#MES','<DATE>_STD_xf.nc#MIC','<DATE>_STD_xf.nc#GEL','<DATE>_STD_xf.nc#POC']
+#
+#Diag*.stddevxa  = ['<DATE>_STD_xa.nc#RRS412','<DATE>_STD_xa.nc#RRS443','<DATE>_STD_xa.nc#RRS490','<DATE>_STD_xa.nc#RRS510','<DATE>_STD_xa.nc#RRS555','<DATE>_STD_xa.nc#RRS670','<DATE>_STD_xa.nc#CDI','<DATE>_STD_xa.nc#CEM','<DATE>_STD_xa.nc#CFL','<DATE>_STD_xa.nc#MES','<DATE>_STD_xa.nc#MIC','<DATE>_STD_xa.nc#GEL','<DATE>_STD_xa.nc#POC']
+#
+Diag*.xa-xf     = ['<DATE>_xa_incr.nc#RRS412','<DATE>_xa_incr.nc#RRS443','<DATE>_xa_incr.nc#RRS490','<DATE>_xa_incr.nc#RRS510','<DATE>_xa_incr.nc#RRS555','<DATE>_xa_incr.nc#RRS670','<DATE>_xa_incr.nc#CDI','<DATE>_xa_incr.nc#CEM','<DATE>_xa_incr.nc#CFL','<DATE>_xa_incr.nc#MES','<DATE>_xa_incr.nc#MIC','<DATE>_xa_incr.nc#GEL','<DATE>_xa_incr.nc#POC']
+
+Diag001.Ea        = ['("<DATE>_Ea_C",I3.3,".nc#RRS412")','("<DATE>_Ea_C",I3.3,".nc#RRS443")','("<DATE>_Ea_C",I3.3,".nc#RRS490")','("<DATE>_Ea_C",I3.3,".nc#RRS510")','("<DATE>_Ea_C",I3.3,".nc#RRS555")','("<DATE>_Ea_C",I3.3,".nc#RRS670")','("<DATE>_Ea_C",I3.3,".nc#CDI")','("<DATE>_Ea_C",I3.3,".nc#CEM")','("<DATE>_Ea_C",I3.3,".nc#CFL")','("<DATE>_Ea_C",I3.3,".nc#MES")','("<DATE>_Ea_C",I3.3,".nc#MIC")','("<DATE>_Ea_C",I3.3,".nc#GEL")','("<DATE>_Ea_C",I3.3,".nc#POC")']
+Diag001.path   = '/scratch/ulg/mast/pverezem/SORDA/analysis/'
+
+# Diagnostics
+#
+# Diag001.stddevxf  = ['("<DATE>_STD_xf_C",I3.3,".nc#RRS412")','("<DATE>_STD_xf_C",I3.3,".nc#RRS443")','("<DATE>_STD_xf_C",I3.3,".nc#RRS490")','("<DATE>_STD_xf_C",I3.3,".nc#RRS510")','("<DATE>_STD_xf_C",I3.3,".nc#RRS555")','("<DATE>_STD_xf_C",I3.3,".nc#RRS670")','("<DATE>_STD_xf_C",I3.3,".nc#CDI")','("<DATE>_STD_xf_C",I3.3,".nc#CEM")','("<DATE>_STD_xf_C",I3.3,".nc#CFL")','("<DATE>_STD_xf_C",I3.3,".nc#MES")','("<DATE>_STD_xf_C",I3.3,".nc#MIC")','("<DATE>_STD_xf_C",I3.3,".nc#GEL")','("<DATE>_STD_xf_C",I3.3,".nc#POC")']
+#
+# Diag001.stddevxa  = ['("<DATE>_STD_xa_C",I3.3,".nc#RRS412")','("<DATE>_STD_xa_C",I3.3,".nc#RRS443")','("<DATE>_STD_xa_C",I3.3,".nc#RRS490")','("<DA    TE>_STD_xa_C",I3.3,".nc#RRS510")','("<DATE>_STD_xa_C",I3.3,".nc#RRS555")','("<DATE>_STD_xa_C",I3.3,".nc#RRS670")','("<DATE>_STD_xa_C",I3.3,".nc#BCD    I")','("<DATE>_STD_xa_C",I3.3,".nc#CEM")','("<DATE>_STD_xa_C",I3.3,".nc#CFL")','("<DATE>_STD_xa_C",I3.3,".nc#MES")','("<DATE>_STD_xa_C",I3.3,".n    c#MIC")','("<DATE>_STD_xa_C",I3.3,".nc#GEL")','("<DATE>_STD_xa_C",I3.3,".nc#POC")']
+#
+# DiagXXX.xf        = vector of strings. Forecast (ensemble mean)
+#
+# DiagXXX.xa        = vector of strings. Analysis (ensemble mean)
+#
+# Diag001.xa-xf     = ['("<DATE>_xa_incr_C",I3.3,".nc#RRS412")','("<DATE>_xa_incr_C",I3.3,".nc#RRS443")','("<DATE>_xa_incr_C",I3.3,".nc#RRS490")','("<DA    TE>_xa_incr_C",I3.3,".nc#RRS510")','("<DATE>_xa_incr_C",I3.3,".nc#RRS555")','("<DATE>_xa_incr_C",I3.3,".nc#RRS670")','("<DATE>_xa_incr_C",I3.3,".nc#BCD    I")','("<DATE>_xa_incr_C",I3.3,".nc#CEM")','("<DATE>_xa_incr_C",I3.3,".nc#CFL")','("<DATE>_xa_incr_C",I3.3,".nc#MES")','("<DATE>_xa_incr_C",I3.3,".n    c#MIC")','("<DATE>_xa_incr_C",I3.3,".nc#GEL")','("<DATE>_xa_incr_C",I3.3,".nc#POC")']
+#
+# DiagXXX.Ef        = vector of strings. Forecast ensemble, same Fortran formats as ErrorSpace.init
+#
+# DiagXXX.Ea        = vector of strings. Analysis ensemble, same Fortran formats as ErrorSpace.init
+#
+# DiagXXX.Hxf       = vector of strings. Forecast at observation location
+#
+# DiagXXX.Hxa       = vector of strings. Analysis at observation location
+#
+# DiagXXX.yo        = vector of strings. Observation used during assimilation
+#
+# DiagXXX.invsqrtR  = vector of strings. inverse of the square root of diagonal 
+#   elements of the observation error covariance matrix
+#
+# DiagXXX.stddevHxf = vector of strings. Error standard deviation of forecast
+#   at observation location
+#
+# DiagXXX.stddevHxa = vector of strings. Error standard deviation of analysis
+#   at observation location
+#
+# DiagXXX.path   = string. Path where all files for the diagnostics can be found
+
+
+
+# percentage of kept particles
+# EWPF.keep = 0.8                  
+# normal standard deviation of 1
+# EWPF.nstd = 1.0                  
+# normal mean of 0
+# EWPF.nmean = 0.0                 
+# parameter for uniform distribution in equal_weight_step
+# EWPF.ufac = 0.00001              
+# parameter for uniform distribution in equal_weight_step
+# EWPF.efacNum = 0.001             
+# parameter in Bprime routine of freetime i.e. time with no nudging
+# EWPF.freetime = 0.6              
+# nudging strength parameter 
+# EWPF.nudgefac = 0.9              

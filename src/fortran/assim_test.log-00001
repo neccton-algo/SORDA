@@ -1,0 +1,64 @@
+ Assimilate observation:            1
+ max Correction reached            0 ntimes.
+ Nb_observations       598741
+ Nb_rejected_observations       264403
+ Nb_valid_observations       334338
+001.forecast.mjd                           57966.4792
+001.forecast.rms_yo-Hx                  0.3269280E+03
+001.forecast.bias_yo-Hx                 0.1175732E+03
+001.forecast.rms_invsqrtR_yo-Hx         0.2186091E+06
+001.forecast.projection_yo-Hx_into_HSf  0.6323424E+07
+001.analysis.mjd                           57966.4792
+001.analysis.rms_yo-Hx                  0.3234112E+03
+001.analysis.bias_yo-Hx                 0.1049871E+03
+001.analysis.rms_invsqrtR_yo-Hx         0.2149297E+06
+001.analysis.projection_yo-Hx_into_HSf  0.1159973E+05
+ Per variables :
+ Variable number            1 Reflectance_510nm
+   Shape:         1027         583
+   Size:       598741
+   Sea points:       598741
+   Sea points out of grid:       264403
+001.Reflectance_510nm.forecast.mjd                           57966.4792
+001.Reflectance_510nm.forecast.rms_yo-Hx                  0.3269280E+03
+001.Reflectance_510nm.forecast.bias_yo-Hx                 0.1175732E+03
+001.Reflectance_510nm.forecast.rms_invsqrtR_yo-Hx         0.2186091E+06
+001.Reflectance_510nm.forecast.projection_yo-Hx_into_HSf  0.6323424E+07
+001.Reflectance_510nm.analysis.mjd                           57966.4792
+001.Reflectance_510nm.analysis.rms_yo-Hx                  0.3234112E+03
+001.Reflectance_510nm.analysis.bias_yo-Hx                 0.1049871E+03
+001.Reflectance_510nm.analysis.rms_invsqrtR_yo-Hx         0.2149297E+06
+001.Reflectance_510nm.analysis.projection_yo-Hx_into_HSf  0.1159973E+05
+
+ Assimilate observation:            1
+ max Correction reached            0 ntimes.
+ Nb_observations       335775
+ Nb_rejected_observations        54281
+ Nb_valid_observations       281494
+001.forecast.mjd                           57966.4792
+001.forecast.rms_yo-Hx                  0.8144762E-02
+001.forecast.bias_yo-Hx                -0.7510619E-02
+001.forecast.rms_invsqrtR_yo-Hx         0.5978051E+01
+001.forecast.projection_yo-Hx_into_HSf  0.1999268E+04
+001.analysis.mjd                           57966.4792
+001.analysis.rms_yo-Hx                  0.1099125E-02
+001.analysis.bias_yo-Hx                 0.1212713E-03
+001.analysis.rms_invsqrtR_yo-Hx         0.5944872E+00
+001.analysis.projection_yo-Hx_into_HSf  0.2592578E+00
+ Per variables :
+ Variable number            1 Reflectance_510nm
+   Shape:         1027         583
+   Size:       598741
+   Sea points:       335775
+   Sea points out of grid:        54281
+001.Reflectance_510nm.forecast.mjd                           57966.4792
+001.Reflectance_510nm.forecast.rms_yo-Hx                  0.8144762E-02
+001.Reflectance_510nm.forecast.bias_yo-Hx                -0.7510619E-02
+001.Reflectance_510nm.forecast.rms_invsqrtR_yo-Hx         0.5978051E+01
+001.Reflectance_510nm.forecast.projection_yo-Hx_into_HSf  0.1999268E+04
+001.Reflectance_510nm.analysis.mjd                           57966.4792
+001.Reflectance_510nm.analysis.rms_yo-Hx                  0.1099125E-02
+001.Reflectance_510nm.analysis.bias_yo-Hx                 0.1212713E-03
+001.Reflectance_510nm.analysis.rms_invsqrtR_yo-Hx         0.5944872E+00
+001.Reflectance_510nm.analysis.projection_yo-Hx_into_HSf  0.2592578E+00
+

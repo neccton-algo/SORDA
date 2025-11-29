@@ -1,0 +1,74 @@
+# =========================
+# Python / Jupyter basics
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.dll
+
+# Virtual envs
+env/
+venv/
+.venv/
+.conda/
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+.jupyter_cache/
+
+# Logs & junk
+*.log
+*.out
+*.err
+slurm-*.out
+*.tmp
+*~
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# =========================
+# Archives / large bundles
+# =========================
+*.tar
+*.tar.gz
+*.tar.zst
+*.zip
+
+# =========================
+# Project-specific ignores
+# =========================
+
+# 1) Runtime output directories (keep empty dirs via .gitkeep)
+analysis/*
+!analysis/.gitkeep
+
+forecast/*
+!forecast/.gitkeep
+
+current_day/*
+!current_day/.gitkeep
+
+SORDA_output/*
+!SORDA_output/.gitkeep
+
+# 2) Dynamic data from Zenodo (user downloads here)
+data/dynamic/*
+!data/dynamic/.gitkeep
+
+# 3) PNG figures – do not version plots
+*.png
+
+# 4) Temporary NetCDF junk (backups, editor artifacts)
+*.nc~
+*.nc.bak
+

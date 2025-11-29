@@ -1,0 +1,16 @@
+name: sorda
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - xarray
+  - netcdf4
+  - matplotlib
+  - cartopy
+  - pip
+  - jupyter           # for running the notebook
+  - ipykernel         # optional but nice for VS Code / Jupyter integration
+  - pip:
+      - properscoring
+
