@@ -303,9 +303,7 @@ To evaluate the performance of the assimilation system, SORDA computes several w
 
 MAE measures the average magnitude of model–observation differences:
 
-\[
-\text{MAE} = \frac{1}{N}\sum_{i=1}^{N} |x_i - y_i|
-\]
+$\text{MAE} = \frac{1}{N}\sum_{i=1}^{N} |x_i - y_i|$
 
 In this project, MAE is computed in several forms:
 
@@ -339,9 +337,7 @@ This metric is more informative than MAE when dealing with ensembles.
 
 Although not a metric, increments provide a **diagnostic tool**:
 
-\[
-\delta x = x^\text{analysis} - x^\text{forecast}
-\]
+$\delta x = x^\text{analysis} - x^\text{forecast}$
 
 Spatial maps and vertical sections of increments show:
 
